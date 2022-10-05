@@ -2,7 +2,7 @@
 CONTENIDO INICIO
 ======================================-->
 <?php 
-echo "Soy el buscador";
+echo "Soy el buscado";
 return; 
 if (isset($rutas[0]) && is_numeric($rutas[0])) {
 	$paginaActual = $rutas[0];
