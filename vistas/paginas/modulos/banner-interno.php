@@ -1,7 +1,15 @@
+<?php 
+
+$banner = ControladorBlog::ctrTraerBanner("interno");
+
+
+
+?>
+
 <!--=====================================
 BANNER
 ======================================-->
-<?php $banner = $blog->ctrBanner("interno"); ?>
+
 <div class="bannerEstatico d-none d-md-block"></div>
 
 <section class="jd-slider fade-slider">
@@ -9,9 +17,10 @@ BANNER
 	<div class="slide-inner">
 		
 		<ul class="slide-area">
-			
-			<?php foreach ($banner as $key => $value): ?>
-				<li>
+
+		<?php foreach ($banner as $key => $value): ?>
+
+			<li>
 
 				<div class="d-none d-md-block textoBanner">
 					
@@ -20,11 +29,14 @@ BANNER
 
 				</div>
 				
-				<img src ="<?php echo $respuesta["dominio"].$value["img_banner"] ?>" class="img-fluid">
+				<img src="<?php echo $blog["dominio"].$value["img_banner"];?>" class="img-fluid">
 
-			</li>
-			<?php endforeach ?>
-					
+			</li>		
+			
+		<?php endforeach ?>
+			
+			
+
 		</ul>
 
 	</div>
