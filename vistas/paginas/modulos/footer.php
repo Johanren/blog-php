@@ -1,7 +1,7 @@
 <!--=====================================
 FOOTER
 ======================================-->
-
+<?php $categorias = $blog -> ctrMostrarCategorias(null, null); ?>
 <footer class="container-fluid py-5 d-none d-md-block">
 	
 	<div class="container">

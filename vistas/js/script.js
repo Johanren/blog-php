@@ -160,8 +160,8 @@ Revisar Opiniones Vacias
 =============================================*/
 if ($(".opiniones").html()) {
 	if (document.querySelector(".opiniones").childNodes.length == 1) {
-	$(".opiniones").html(`<p class="pl-3 text-secondary">!Este articulo no tiene opciones¡</p>`)
-}
+		$(".opiniones").html(`<p class="pl-3 text-secondary">!Este articulo no tiene opciones¡</p>`)
+	}
 }
 
 
@@ -173,13 +173,13 @@ $('#fotoOpinion').change(function(){
 	if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
 		$('#fotoOpinion').val("");
 		$('#fotoOpinion').after(`
-				<div class="aler alert-danger">¡La imagen debe estar en formato JPG o PNG!</div>
+			<div class="aler alert-danger">¡La imagen debe estar en formato JPG o PNG!</div>
 			`)
 		return;
 	}else if(imagen["size"] > 2000000){
 		$('#fotoOpinion').val("");
 		$('#fotoOpinion').after(`
-				<div class="aler alert-danger">¡La imagen no debe pesar más de 2MB!</div>
+			<div class="aler alert-danger">¡La imagen no debe pesar más de 2MB!</div>
 			`)
 		return;
 	}else{
@@ -189,5 +189,49 @@ $('#fotoOpinion').change(function(){
 			var rutaImagen = event.target.result;
 			$(".prevFotoOpinion").attr("src", rutaImagen);
 		})
+	}
+})
+
+//Buscador
+
+$(".buscador").change(function(){
+	var busqueda = $(this).val().toLowerCase();
+
+	var expresion = /^[a-z0-9ñÑáéíóú ]*$/;
+
+	if (!expresion.test(busqueda)) {
+		$(".buscador").val("");
+	}else{
+		var evaluarBusqueda = busqueda.replace(/[0-9ñáéíóú ]/g, "_");
+
+		var rutaBuscador = evaluarBusqueda;
+
+		$(".buscar").click(function(){
+			if ($(".buscador").val() != "") {
+				window.location = rutaActual+rutaBuscador;
+			}
+		})
+	}
+})
+
+//Buscardor con enter
+
+$(document).on("keyup", ".buscador", function(evento){
+	evento.preventDefault();
+
+	if (evento.keyCode == 13 && $(".buscador").val() != "") {
+		var busqueda = $(this).val().toLowerCase();
+
+		var expresion = /^[a-z0-9ñÑáéíóú ]*$/;
+
+		if (!expresion.test(busqueda)) {
+			$(".buscador").val("");
+		}else{
+			var evaluarBusqueda = busqueda.replace(/[0-9ñáéíóú ]/g, "_");
+
+			var rutaBuscador = evaluarBusqueda;
+
+			window.location = rutaActual+rutaBuscador;
+		}
 	}
 })

@@ -1,7 +1,9 @@
 <!--=====================================
 BANNER
 ======================================-->
-
+<?php 
+$banner = $blog->ctrBanner("inicio");
+?>
 <div class="bannerEstatico d-none d-md-block"></div>
 
 <section class="jd-slider fade-slider">
@@ -9,30 +11,14 @@ BANNER
 	<div class="slide-inner">
 		
 		<ul class="slide-area">
+			<?php foreach ($banner as $key => $value): ?>
+				<li>
+
+					<img src ="<?php echo $respuesta["dominio"].$value["img_banner"] ?>" class="img-fluid">
+
+				</li>
+			<?php endforeach ?>
 			
-			<li>
-				
-				<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/banner01.jpg" class="img-fluid">
-
-			</li>
-
-			<li>
-				
-				<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/banner02.jpg" class="img-fluid">
-
-			</li>
-
-			<li>
-				
-				<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/banner03.jpg" class="img-fluid">
-
-			</li>
-
-			<li>
-				
-				<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/banner04.jpg" class="img-fluid">
-
-			</li>
 
 		</ul>
 

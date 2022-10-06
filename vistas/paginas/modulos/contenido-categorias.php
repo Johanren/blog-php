@@ -27,6 +27,7 @@ if (isset($rutas[1])){
 	$paginaActual = 1;
 }
 $articuloDestacados = $blog->ctrArticulosDestacados("id_cat", $articulo[0]["id_cat"]);
+$anuncios = $blog->ctrTraerAnuncio("categorias");
 ?>
 <!--=====================================
 CONTENIDO CATEGORIA
@@ -86,11 +87,7 @@ CONTENIDO CATEGORIA
 
 				<!-- PUBLICIDAD -->
 
-				<div class="d-block d-lg-none">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid" width="100%">
-
-				</div>
+				
 
 
 				<div class="container d-none d-md-block">
@@ -115,7 +112,7 @@ CONTENIDO CATEGORIA
 
 					?>
 					<?php foreach ($tags as $key => $value): ?>
-						<a href="#<?php echo $value ?>" class="btn btn-secondary btn-sm m-1"><?php echo $value ?></a> 	
+						<a href="<?php echo $respuesta["dominio"].preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value) ?>" class="btn btn-secondary btn-sm m-1"><?php echo $value ?></a> 	
 					<?php endforeach ?>
 					
 
@@ -160,23 +157,11 @@ CONTENIDO CATEGORIA
 
 				<!-- PUBLICIDAD -->
 
-				<div class="mb-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
-
-				</div>	
+				<?php 
+					foreach ($anuncios as $key => $value) {
+						echo $value["codigo_anuncio"];
+					}
+				?>
 				
 			</div>
 

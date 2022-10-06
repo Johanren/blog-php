@@ -8,6 +8,8 @@ if (isset($rutas[0]) && is_numeric($rutas[0])) {
 	$paginaActual = 1;
 }
 $articuloDestacados = $blog->ctrArticulosDestacados(null, null);
+$anuncios = $blog->ctrTraerAnuncio("inicio");
+
 ?>
 <div class="container-fluid bg-white contenidoInicio pb-4">
 	
@@ -113,23 +115,11 @@ $articuloDestacados = $blog->ctrArticulosDestacados(null, null);
 
 				<!-- PUBLICIDAD -->
 
-				<div class="my-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad01.jpg" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
-
-				</div>	
+				<?php 
+					foreach ($anuncios as $key => $value) {
+						echo $value["codigo_anuncio"];
+					}
+				?>
 				
 			</div>
 

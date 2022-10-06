@@ -11,9 +11,10 @@ function limitarForeache($array, $limite)
 {
 	foreach ($array as $key => $value) {
 		if (!$limite--) break;
-			yield $key => $value;
+		yield $key => $value;
 	}
 }
+$anuncios = $blog->ctrTraerAnuncio("articulos");
 ?>
 <!--=====================================
 CONTENIDO ARTÍCULO
@@ -116,7 +117,7 @@ CONTENIDO ARTÍCULO
 
 						?>
 						<?php foreach ($tags as $key => $value): ?>
-							<a href="#<?php echo $value ?>" class="btn btn-secondary btn-sm m-1"><?php echo $value ?></a> 	
+							<a href="<?php $respuesta["dominio"].preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value) ?>" class="btn btn-secondary btn-sm m-1"><?php echo $value ?></a> 	
 						<?php endforeach ?>
 
 					</div>
@@ -364,35 +365,23 @@ CONTENIDO ARTÍCULO
 										</div>
 
 									</div>
-									<?php endforeach ?>
+								<?php endforeach ?>
 
-
-								</div>
-
-								<!-- PUBLICIDAD -->
-
-								<div class="mb-4">
-
-									<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
-
-								</div>
-
-								<div class="my-4">
-
-									<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-								</div>	
-
-								<div class="my-4">
-
-									<img src ="<?php echo $respuesta["dominio"]; ?>vistas/img/ad06.png" class="img-fluid">
-
-								</div>	
 
 							</div>
+
+							<!-- PUBLICIDAD -->
+
+							<?php 
+							foreach ($anuncios as $key => $value) {
+								echo $value["codigo_anuncio"];
+							}
+							?>
 
 						</div>
 
 					</div>
 
 				</div>
+
+			</div>

@@ -120,4 +120,31 @@ static public function ctrArticulosDestacados($item, $valor){
 	return $res;
 }
 
+static public function ctrBuscador($desde, $cantidad, $busqueda){
+	$tabla = "categorias";
+	$tabla1 = "articulos";
+	$respuesta = new ModeloBlog();
+	$res = $respuesta->mdlBuscador($tabla, $tabla1, $desde, $cantidad, $busqueda);
+	return $res;
+}
+
+static public function crtTotalBuscador($busqueda){
+	$tabla = "articulos";
+	$respuesta = new ModeloBlog();
+	$res = $respuesta->mdlTotalBuscador($tabla, $busqueda);
+	return $res;
+}
+
+static public function ctrTraerAnuncio($valor){
+	$tabla = "anuncios";
+	$respuesta = new ModeloBlog();
+	$res = $respuesta->mdlTraerAnuncio($tabla, $valor);
+	return $res;
+}
+static public function ctrBanner($valor){
+	$tabla = "banner";
+	$respuesta = new ModeloBlog();
+	$res = $respuesta->mdlBanner($tabla, $valor);
+	return $res;
+}
 }

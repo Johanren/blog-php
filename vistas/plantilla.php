@@ -194,6 +194,9 @@ $totalPagina = ceil(count($totalarticulo)/5);
 				if ($rutas[0] == $value["ruta_categoria"]) {
 					$validarRuta = "categorias";
 					break;
+				}elseif ($rutas[0] == "sobre-mi") {
+					$validarRuta = "sobre-mi";
+					break;
 				}else{
 					$validarRuta="buscador";
 				}
@@ -218,6 +221,8 @@ $totalPagina = ceil(count($totalarticulo)/5);
 		}
 		if ($validarRuta == "categorias") {
 			include "paginas/categorias.php";
+		}elseif($validarRuta == "sobre-mi"){
+			include "paginas/sobre-mi.php";
 		}elseif($validarRuta == "buscador"){
 			include "paginas/buscador.php";
 		}elseif($validarRuta == "articulos"){

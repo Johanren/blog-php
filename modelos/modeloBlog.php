@@ -115,4 +115,38 @@ class ModeloBlog{
 			$stmt->close();
 		}
 	}
+
+	static public function mdlBuscador($tabla, $tabla1, $desde, $cantidad, $busqueda){
+		$conn = new Conexion();
+		$stmt = $conn->conectar()->prepare("SELECT $tabla.*, $tabla1.*, date_format(fecha_articulo, '%d.%m.%y') AS fecha_articulo FROM $tabla INNER JOIN $tabla1 ON $tabla.id_categoria = $tabla1.id_cat WHERE titulo_articulo like '%$busqueda%' OR descripcion_articulo like '%$busqueda%' OR p_claves_articulo like '%$busqueda%' OR ruta_articulo like '%$busqueda%' ORDER BY $tabla1.id_articulo DESC LIMIT $desde, $cantidad");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+	static public function mdlTotalBuscador($tabla, $busqueda){
+		$conn = new Conexion();
+		$stmt = $conn->conectar()->prepare("SELECT * FROM $tabla WHERE ruta_articulo like '%$busqueda%' OR titulo_articulo like '%$busqueda%' OR descripcion_articulo like '%$busqueda%' OR p_claves_articulo like '%$busqueda%' OR ruta_articulo like '%$busqueda%'");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+	static public function mdlTraerAnuncio($tabla, $valor){
+		$conn = new Conexion();
+		$stmt = $conn->conectar()->prepare("SELECT * FROM $tabla WHERE pagina_anuncio = ?");
+		$stmt->bindParam(1,$valor, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+	static public function mdlBanner($tabla, $valor){
+		$conn = new Conexion();
+		$stmt = $conn->conectar()->prepare("SELECT * FROM $tabla WHERE pagina_banner = ?");
+		$stmt->bindParam(1,$valor, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
 }
