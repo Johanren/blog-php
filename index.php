@@ -7,7 +7,7 @@ require_once "modelos/blog.modelo.php";
 
 require_once "controladores/correo.controlador.php";
 
-require 'extensiones/vendor/autoload.php';
+require 'extenciones/vendor/autoload.php';
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrTraerPlantilla();
